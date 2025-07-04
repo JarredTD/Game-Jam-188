@@ -13,7 +13,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] float sprintSpeedMultiplier = 1f;
     [SerializeField] float inertiaMultiplier = 1f;
     [SerializeField] bool moving;
-    float moveInput;
+    [SerializeField]float moveInput;
     bool sprintPressed;
 
     private void Awake()

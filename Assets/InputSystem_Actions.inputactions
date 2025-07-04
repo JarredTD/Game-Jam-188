@@ -284,9 +284,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "3D Vector",
-                    "id": "0c696022-ee00-4954-a0d3-451fe6f8327d",
-                    "path": "3DVector",
+                    "name": "WASD",
+                    "id": "8dcdf432-a005-4dbc-9447-ea89773d237b",
+                    "path": "Dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -295,31 +295,20 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "d421b00f-dbcc-4691-8f57-d4baa7ad2a5d",
-                    "path": "",
+                    "name": "left",
+                    "id": "4cd4437f-aefe-4935-880d-e4de20766f44",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "e6ff29f6-bd2c-4989-b1cf-080f060c7daa",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "fe9e8089-f6c1-449b-aff7-4802a02bd699",
-                    "path": "<Keyboard>/#(Q)",
+                    "id": "1aebb5a4-05ba-4e4f-92cf-e953077503a9",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -329,8 +318,8 @@
                 },
                 {
                     "name": "right",
-                    "id": "7afbab8d-e5b1-4ea9-a5de-42e3de2e5cd8",
-                    "path": "<Keyboard>/#(E)",
+                    "id": "7a75c61d-0a05-49fd-a29b-c4421d0aa896",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -339,23 +328,12 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "forward",
-                    "id": "5878b5f4-2aa8-449c-b593-228eef403895",
-                    "path": "",
+                    "name": "right",
+                    "id": "c3014818-5dc2-4076-b671-22f4a7e3a61f",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "backward",
-                    "id": "0fc7f4c3-2fce-4e27-83fa-a781a55fb8a4",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true

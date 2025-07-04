@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
 
 public class BoxRotate : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed = 1;
     [SerializeField] private bool rotating = false;
     private float speed = 1;
+    [SerializeField]private float moveInput;
     private float rotateTarget = 0;
 
     [SerializeField] private GameObject player;
@@ -27,29 +29,27 @@ public class BoxRotate : MonoBehaviour
             if (rotateTarget < 0)
             {
                 rotating = false;
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (Mathf.Round(transform.eulerAngles.z / 90) * 90));
+                transform.eulerAngles = new Vector3(
+                    transform.eulerAngles.x,
+                    transform.eulerAngles.y,
+                    Mathf.Round(transform.eulerAngles.z / 90) * 90
+                );
             }
-
-            
         }
-        else
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>().x;
+        if (!rotating && context.performed)
         {
-            if (Input.GetKey(KeyCode.Q))
+            
+            if (moveInput != 0)
             {
                 rotating = true;
-                speed = 1 * rotateSpeed;
+                speed = moveInput * rotateSpeed;
                 rotateTarget = 90;
-                //transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
-            }
-            else if (Input.GetKey(KeyCode.E))
-            {
-                rotating = true;
-                speed = -1 * rotateSpeed;
-                rotateTarget = 90;
-                //transform.Rotate(0, 0, -rotateSpeed * Time.deltaTime);
             }
         }
-
-        
     }
 }
