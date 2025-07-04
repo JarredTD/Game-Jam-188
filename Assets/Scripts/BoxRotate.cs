@@ -8,14 +8,19 @@ public class BoxRotate : MonoBehaviour
     [SerializeField] private bool rotating = false;
     private float speed = 1;
     private float rotateTarget = 0;
+
+    [SerializeField] private GameObject player;
     void OnAwake()
     {
+
     }
 
     void Update()
     {
         if (rotating)
         {
+            player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+
             transform.Rotate(0, 0, speed * Time.deltaTime);
 
             rotateTarget -= Mathf.Abs(speed * Time.deltaTime);

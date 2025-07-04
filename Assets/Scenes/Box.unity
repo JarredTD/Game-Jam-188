@@ -735,6 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 200
   rotating: 0
+  player: {fileID: 217223101}
 --- !u!4 &952367687
 Transform:
   m_ObjectHideFlags: 0
