@@ -4,8 +4,8 @@ using UnityEngine.Rendering;
 
 public class BoxRotate : MonoBehaviour
 {
-    public float rotateSpeed = 1;
-    public bool rotating = false;
+    [SerializeField] private float rotateSpeed = 1;
+    [SerializeField] private bool rotating = false;
     private float speed = 1;
     private float rotateTarget = 0;
     void OnAwake()
@@ -16,11 +16,16 @@ public class BoxRotate : MonoBehaviour
     {
         if (rotating)
         {
-            
-            rotateTarget -= Mathf.Abs(speed * Time.deltaTime);
-            if (rotateTarget < 0) rotating = false;
-
             transform.Rotate(0, 0, speed * Time.deltaTime);
+
+            rotateTarget -= Mathf.Abs(speed * Time.deltaTime);
+            if (rotateTarget < 0)
+            {
+                rotating = false;
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, (Mathf.Round(transform.eulerAngles.z / 90) * 90));
+            }
+
+            
         }
         else
         {
