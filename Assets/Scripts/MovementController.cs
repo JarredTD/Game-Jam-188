@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-    Rigidbody2D rb;
+    Rigidbody rb;
     [SerializeField] int speed = 5;
     [SerializeField] float speedMultiplier = 1f;
     [SerializeField] float jumpForce = 5f;
@@ -18,16 +18,17 @@ public class MovementController : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
     }
 
     #region Core Movement Methods
     private void FixedUpdate()
     {
         SpeedSmoothing();
-        if(speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
+        if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
-        rb.linearVelocity = new Vector2(targetVelocity, rb.linearVelocity.y);
+        Vector3 velocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector3(targetVelocity, velocity.y, velocity.z);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -38,19 +39,18 @@ public class MovementController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
     #endregion
 
-
     #region Modifying Movement Methods
-    
+
     public void OnRun(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             sprintPressed = true;
-            sprintSpeedMultiplier = 2f; 
+            sprintSpeedMultiplier = 2f;
         }
         else if (context.canceled)
         {
@@ -65,7 +65,7 @@ public class MovementController : MonoBehaviour
         {
             speedMultiplier += Time.deltaTime * inertiaMultiplier;
         }
-        else if(!moving && speedMultiplier > 0)
+        else if (!moving && speedMultiplier > 0)
         {
             speedMultiplier -= Time.deltaTime * 2;
             if (speedMultiplier < 0) speedMultiplier = 0;
@@ -73,7 +73,5 @@ public class MovementController : MonoBehaviour
     }
 
     #endregion
-
-
 }
 
