@@ -7,7 +7,7 @@ public class BoxRotate : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed = 1;
     [SerializeField] private bool rotating = false;
-    private float speed = 1;
+    [SerializeField]private float speed = 1;
     [SerializeField]private float moveInput;
     private float rotateTarget = 0;
 

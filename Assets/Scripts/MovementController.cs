@@ -39,8 +39,12 @@ public class MovementController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
+        if (context.performed && rb.linearVelocity.y == 0)
+        {
+          rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }  
+        }
+        
     #endregion
 
     #region Modifying Movement Methods
