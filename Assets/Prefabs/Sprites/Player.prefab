@@ -153,10 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   speedMultiplier: 1
-  jumpForce: 8
+  jumpForce: 10
   sprintSpeedMultiplier: 1
   inertiaMultiplier: 1
   moving: 0
+  grounded: 0
   moveInput: 0
 --- !u!114 &3590098900869913064
 MonoBehaviour:

@@ -84,16 +84,16 @@ public class MovementController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f))
 
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
+            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
             Debug.Log("Did Hit");
             grounded = true;
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.white);
+            Debug.DrawRay(transform.position, Vector3.down * 1000, Color.white);
             Debug.Log("Did not Hit");
             grounded = false;
         }

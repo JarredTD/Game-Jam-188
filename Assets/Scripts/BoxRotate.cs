@@ -48,7 +48,7 @@ public class BoxRotate : MonoBehaviour
             if (moveInput != 0)
             {
                 rotating = true;
-                speed = moveInput * rotateSpeed;
+                speed = -moveInput * rotateSpeed;
                 rotateTarget = 90;
             }
         }
