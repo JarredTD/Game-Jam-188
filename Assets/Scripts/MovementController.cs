@@ -8,11 +8,12 @@ public class MovementController : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] int speed = 5;
-    [SerializeField] float speedMultiplier = 1f;
+    [SerializeField] public float speedMultiplier = 1f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float sprintSpeedMultiplier = 1f;
     [SerializeField] float inertiaMultiplier = 1f;
     [SerializeField] bool moving;
+    [SerializeField] public bool grounded;
     [SerializeField]float moveInput;
     bool sprintPressed;
 
@@ -24,6 +25,7 @@ public class MovementController : MonoBehaviour
     #region Core Movement Methods
     private void FixedUpdate()
     {
+        GetGrounded();
         SpeedSmoothing();
         if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
@@ -39,7 +41,7 @@ public class MovementController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && rb.linearVelocity.y == 0)
+        if (context.performed && grounded)
         {
           rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }  
@@ -77,5 +79,26 @@ public class MovementController : MonoBehaviour
     }
 
     #endregion
+
+    void GetGrounded()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.1f))
+
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
+            Debug.Log("Did Hit");
+            grounded = true;
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 1000, Color.white);
+            Debug.Log("Did not Hit");
+            grounded = false;
+        }
+
+        //grounded = true;
+    }
 }
 

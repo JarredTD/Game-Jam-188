@@ -21,6 +21,7 @@ public class BoxRotate : MonoBehaviour
     {
         if (rotating)
         {
+            player.GetComponent<MovementController>().speedMultiplier = 0;
             player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
             transform.Rotate(0, 0, speed * Time.deltaTime);
