@@ -34,24 +34,47 @@ public class DebugCollider : MonoBehaviour
 
         Gizmos.color = gizmoColor;
 
-        Vector3 size;
-        Vector3 center;
-
-        if (autoSizeFromCollider)
-        {
-            GetColliderBox(out center, out size);
-        }
-        else
-        {
-            center = transform.position;
-            size = manualBoxSize;
-        }
-
         if (drawWireBox)
-            Gizmos.DrawWireCube(center, size);
+        {
+            switch (cachedCollider)
+            {
+                case BoxCollider box:
+                    Vector3 boxCenter = box.transform.TransformPoint(box.center);
+                    Vector3 boxSize = Vector3.Scale(box.size, box.transform.lossyScale);
+                    Gizmos.DrawWireCube(boxCenter, boxSize);
+                    break;
+
+                case SphereCollider sphere:
+                    Vector3 sphereCenter = sphere.transform.TransformPoint(sphere.center);
+                    float maxScale = Mathf.Max(
+                        sphere.transform.lossyScale.x,
+                        sphere.transform.lossyScale.y,
+                        sphere.transform.lossyScale.z);
+                    float radius = sphere.radius * maxScale;
+                    Gizmos.DrawWireSphere(sphereCenter, radius);
+                    break;
+
+                case CapsuleCollider capsule:
+                    // Capsules are harder to draw, so we approximate with a box for now
+                    GetColliderBox(out Vector3 capsuleCenter, out Vector3 capsuleSize);
+                    Gizmos.DrawWireCube(capsuleCenter, capsuleSize);
+                    break;
+
+                case MeshCollider mesh:
+                    Gizmos.DrawWireCube(mesh.bounds.center, mesh.bounds.size);
+                    break;
+
+                default:
+                    if (autoSizeFromCollider)
+                        Gizmos.DrawWireCube(cachedCollider.bounds.center, cachedCollider.bounds.size);
+                    else
+                        Gizmos.DrawWireCube(transform.position, manualBoxSize);
+                    break;
+            }
+        }
 
         if (drawIcon)
-            Gizmos.DrawIcon(center, "d_UnityEditor.SceneView.png", true);
+            Gizmos.DrawIcon(transform.position, "d_UnityEditor.SceneView.png", true);
     }
 
 #if UNITY_EDITOR
