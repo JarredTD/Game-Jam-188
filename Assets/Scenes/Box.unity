@@ -358,6 +358,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8664627275102072885, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
   m_PrefabInstance: {fileID: 768566516}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &275131554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3249559607754004217, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+  m_PrefabInstance: {fileID: 768566516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275131544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76bc5f5ad29a3974cb633385b6b50ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &322268971
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +598,7 @@ GameObject:
   - component: {fileID: 445714443}
   - component: {fileID: 445714442}
   - component: {fileID: 445714441}
+  - component: {fileID: 445714446}
   m_Layer: 0
   m_Name: PhysicsCube
   m_TagString: Untagged
@@ -710,6 +722,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445714439}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &445714446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445714439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae8ed14f448a3a4f87bfcbf180011f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxRotate: {fileID: 952367686}
 --- !u!1 &566443396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1079,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 275131554}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: GetWalls
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MovementController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8368958752165300749, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1245,6 +1298,8 @@ MonoBehaviour:
   rotating: 0
   speed: 1
   moveInput: 0
+  isRotated90Or270: 0
+  movementController: {fileID: 275131554}
   player: {fileID: 275131544}
 --- !u!4 &952367687
 Transform:

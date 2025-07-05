@@ -33,7 +33,6 @@ public class MovementController : MonoBehaviour
     {
         UpdateAnimator();
         GetGrounded();
-        GetWalls();
         SpeedSmoothing();
         if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
@@ -105,14 +104,14 @@ public class MovementController : MonoBehaviour
     }
     
     // Get wall collision
-    void GetWalls()
+    public void GetWalls(InputAction.CallbackContext context)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f))
+        if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f) && context.ReadValue<Vector2>().x >= 1)
         { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red); }
         else { touchRight = false; }
 
-        if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f))
+        if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f) && context.ReadValue<Vector2>().x <= -1)
         { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red); }
         else { touchLeft = false; }
 
