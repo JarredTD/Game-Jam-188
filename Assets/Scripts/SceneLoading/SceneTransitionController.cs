@@ -17,9 +17,12 @@ public class SceneTransitionController : MonoBehaviour
 
     private void Awake()
     {
-
         DontDestroyOnLoad(gameObject);
+        InitializeFader();
+    }
 
+    private void InitializeFader()
+    {
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 0f;
@@ -29,47 +32,47 @@ public class SceneTransitionController : MonoBehaviour
 
         if (fadeImage != null)
         {
+            fadeImage.gameObject.SetActive(true);
             Color color = fadeImage.color;
             color.a = 0f;
             fadeImage.color = color;
         }
     }
 
-    private void OnEnable()
-    {
-        if (sceneLoadEvent != null)
-        {
-            Debug.Log("SceneTransitionController subscribing to event");
-            sceneLoadEvent.OnRequestSceneLoad += HandleSceneLoad;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (sceneLoadEvent != null)
-        {
-            Debug.Log("SceneTransitionController unsubscribing from event");
-            sceneLoadEvent.OnRequestSceneLoad -= HandleSceneLoad;
-        }
-    }
+    private void OnEnable() => sceneLoadEvent.OnRequestSceneLoad += HandleSceneLoad;
+    private void OnDisable() => sceneLoadEvent.OnRequestSceneLoad -= HandleSceneLoad;
 
     private void HandleSceneLoad(SceneLoaderSO loader)
     {
-        Debug.Log($"SceneTransitionController received a request");
         if (!string.IsNullOrEmpty(loader.sceneName))
-            Debug.Log($"Scene name: {loader.sceneName}");
-        StartCoroutine(FadeAndLoad(loader.sceneName));
+            StartCoroutine(FadeAndLoad(loader.sceneName));
     }
 
     private IEnumerator FadeAndLoad(string sceneName)
     {
         yield return Fade(0f, 1f);
-        yield return SceneManager.LoadSceneAsync(sceneName);
+
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName);
+        loadOp.allowSceneActivation = false;
+
+        while (loadOp.progress < 0.9f)
+            yield return null;
+
+        loadOp.allowSceneActivation = true;
+
+        yield return null;
+        yield return null;
+
         yield return Fade(1f, 0f);
     }
 
     private IEnumerator Fade(float start, float end)
     {
+        Time.timeScale = 1f;
+        yield return null;
+
+        Time.timeScale = 0f;
+
         float time = 0f;
         Color color = fadeImage.color;
 
@@ -81,26 +84,27 @@ public class SceneTransitionController : MonoBehaviour
 
         while (time < fadeDuration)
         {
-            time += Time.deltaTime;
-            float t = time / fadeDuration;
-            float alpha = Mathf.Lerp(start, end, t);
-
-            color.a = alpha;
+            time += Time.unscaledDeltaTime;
+            color.a = Mathf.Lerp(start, end, time / fadeDuration);
             fadeImage.color = color;
 
             if (canvasGroup != null)
-                canvasGroup.alpha = alpha;
+                canvasGroup.alpha = color.a;
 
             yield return null;
         }
 
         color.a = end;
         fadeImage.color = color;
+
         if (canvasGroup != null)
         {
             canvasGroup.alpha = end;
             canvasGroup.blocksRaycasts = end > 0f;
             canvasGroup.interactable = false;
         }
+
+        if (start > end)
+            Time.timeScale = 1f;
     }
 }
