@@ -16,12 +16,21 @@ public class SceneTransitionController : MonoBehaviour
     [Header("Optional Blocking Control")]
     [SerializeField] private CanvasGroup canvasGroup;
 
+    private static SceneTransitionController _instance;
+
     private void Awake()
     {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
         DontDestroyOnLoad(gameObject);
+
         InitializeFader();
     }
-
     private void InitializeFader()
     {
         if (canvasGroup != null)
