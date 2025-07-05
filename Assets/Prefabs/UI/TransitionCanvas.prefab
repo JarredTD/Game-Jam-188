@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 2882810061140961986}
-  fadeDuration: 0.5
+  fadeDuration: 0.3
+  fullBlackDuration: 0.1
   sceneLoadEvent: {fileID: 11400000, guid: 002d400cc1058fa4d92371a65683841f, type: 2}
   canvasGroup: {fileID: 9181439309709818270}

@@ -7,7 +7,8 @@ public class SceneTransitionController : MonoBehaviour
 {
     [Header("Fade Settings")]
     [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private float fadeDuration = 0.3f;
+    [SerializeField] private float fullBlackDuration = 0.1f;
 
     [Header("Scene Event")]
     [SerializeField] private SceneLoadEventSO sceneLoadEvent;
@@ -63,15 +64,22 @@ public class SceneTransitionController : MonoBehaviour
         yield return null;
         yield return null;
 
+        yield return new WaitForSecondsRealtime(fullBlackDuration);
+
         yield return Fade(1f, 0f);
     }
 
     private IEnumerator Fade(float start, float end)
     {
-        Time.timeScale = 1f;
-        yield return null;
-
-        Time.timeScale = 0f;
+        if (end < start)
+        {
+            Time.timeScale = 1f;
+            yield return null;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+        }
 
         float time = 0f;
         Color color = fadeImage.color;

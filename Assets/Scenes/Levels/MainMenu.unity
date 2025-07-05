@@ -299,6 +299,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2315704265938392007, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315704265938392007, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315704265938392007, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2315704265938392007, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165566887726286300, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165566887726286300, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165566887726286300, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165566887726286300, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7390231086122654116, guid: c72bc755cd600434b85c7430e90b3cec, type: 3}
       propertyPath: m_Name
       value: MainMenuCanvas
@@ -599,6 +631,10 @@ PrefabInstance:
     - target: {fileID: 1038105655428547504, guid: 41499ca3a2c980b4f81509f083384f86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4637715867241839333, guid: 41499ca3a2c980b4f81509f083384f86, type: 3}
+      propertyPath: fadeDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8859460561847088544, guid: 41499ca3a2c980b4f81509f083384f86, type: 3}
       propertyPath: m_Name
