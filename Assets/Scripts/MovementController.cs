@@ -15,12 +15,13 @@ public class MovementController : MonoBehaviour
     [SerializeField] float inertiaMultiplier = 1f;
     [SerializeField] bool moving;
     [SerializeField] public bool grounded;
-    [SerializeField]float moveInput;
+    [SerializeField] float moveInput;
+    [SerializeField] Vector2 lastMoveInput;
     bool sprintPressed;
 
     // Whether the player is touching either wall
-    private bool touchLeft = false;
-    private bool touchRight = false;
+    [SerializeField] bool touchLeft;
+    [SerializeField] bool touchRight;
 
     private void Awake()
     {
@@ -38,21 +39,27 @@ public class MovementController : MonoBehaviour
         float targetVelocity = moveInput * speed * speedMultiplier;
         Vector3 velocity = rb.linearVelocity;
         rb.linearVelocity = new Vector3(targetVelocity, velocity.y, velocity.z);
+
+        GetWalls(lastMoveInput);
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>().x;
+        lastMoveInput = context.ReadValue<Vector2>();
+        moveInput = lastMoveInput.x;
         moving = context.performed;
+        UpdateAnimator();
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && grounded)
         {
-          rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }  
-        }
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            moveInput = lastMoveInput.x;
+            UpdateAnimator();
+        }  
+    }
         
     #endregion
 
@@ -87,6 +94,8 @@ public class MovementController : MonoBehaviour
 
     #endregion
 
+    #region Checks
+
     void GetGrounded()
     {
         RaycastHit hit;
@@ -103,26 +112,27 @@ public class MovementController : MonoBehaviour
         }
     }
     
-    // Get wall collision
-    public void GetWalls(InputAction.CallbackContext context)
+
+    public void GetWalls(Vector2 moveInput)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f) && context.ReadValue<Vector2>().x >= 1)
-        { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red); }
+        if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f) && moveInput.x >= 1)
+        { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red);}
         else { touchRight = false; }
 
-        if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f) && context.ReadValue<Vector2>().x <= -1)
-        { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red); }
+        if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f) && moveInput.x <= -1)
+        { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red);}
         else { touchLeft = false; }
 
+        UpdateAnimator();
     }
 
-    // Updates animator information
-    void UpdateAnimator()
+    public void UpdateAnimator()
     {
         animator.SetBool("isGrounded", grounded);
         animator.SetBool("touchRight", touchRight);
         animator.SetBool("touchLeft", touchLeft);
     }
+    #endregion
 }
 
