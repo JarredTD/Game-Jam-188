@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d117c16edf772f2409408486d4ff5a27, type: 3}
-  m_Name: LoadLevelThree
+  m_Name: LoadLevel2
   m_EditorClassIdentifier: 
-  sceneName: LevelThree
+  sceneName: Level2
