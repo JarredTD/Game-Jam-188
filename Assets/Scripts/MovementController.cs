@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class MovementController : MonoBehaviour
 {
     Rigidbody rb;
+    Animator animator;
     [SerializeField] int speed = 5;
     [SerializeField] public float speedMultiplier = 1f;
     [SerializeField] float jumpForce = 5f;
@@ -20,11 +21,13 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     #region Core Movement Methods
     private void FixedUpdate()
     {
+        UpdateAnimator();
         GetGrounded();
         SpeedSmoothing();
         if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
@@ -88,17 +91,19 @@ public class MovementController : MonoBehaviour
 
         {
             Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
-            Debug.Log("Did Hit");
             grounded = true;
         }
         else
         {
             Debug.DrawRay(transform.position, Vector3.down * 1000, Color.white);
-            Debug.Log("Did not Hit");
             grounded = false;
         }
+    }
 
-        //grounded = true;
+    // Updates animator information
+    void UpdateAnimator()
+    {
+        animator.SetBool("isGrounded", grounded);
     }
 }
 
