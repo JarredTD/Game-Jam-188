@@ -18,6 +18,10 @@ public class MovementController : MonoBehaviour
     [SerializeField]float moveInput;
     bool sprintPressed;
 
+    // Whether the player is touching either wall
+    private bool touchLeft = false;
+    private bool touchRight = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,6 +33,7 @@ public class MovementController : MonoBehaviour
     {
         UpdateAnimator();
         GetGrounded();
+        GetWalls();
         SpeedSmoothing();
         if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
@@ -87,8 +92,7 @@ public class MovementController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f))
-
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f))
         {
             Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
             grounded = true;
@@ -99,11 +103,27 @@ public class MovementController : MonoBehaviour
             grounded = false;
         }
     }
+    
+    // Get wall collision
+    void GetWalls()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f))
+        { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red); }
+        else { touchRight = false; }
+
+        if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f))
+        { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red); }
+        else { touchLeft = false; }
+
+    }
 
     // Updates animator information
     void UpdateAnimator()
     {
         animator.SetBool("isGrounded", grounded);
+        animator.SetBool("touchRight", touchRight);
+        animator.SetBool("touchLeft", touchLeft);
     }
 }
 
