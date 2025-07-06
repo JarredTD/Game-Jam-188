@@ -288,14 +288,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
-    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
-    m_ActionName: 'Player/Look[/Mouse/delta]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
@@ -358,6 +350,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb8af555-6d86-4e1d-8c69-f4ba1dae28db
+    m_ActionName: 'Player/Slide[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -380,6 +376,7 @@ MonoBehaviour:
   speed: 1
   moveInput: 0
   isRotated90Or270: 0
+  rotatedInAir: 0
   movementController: {fileID: 892623085}
   player: {fileID: 892623083}
 --- !u!4 &142950140
@@ -780,6 +777,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3249559607754004217, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: boxRotate
+      value: 
+      objectReference: {fileID: 142950139}
     - target: {fileID: 3249559607754004217, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: inertiaMultiplier
       value: 2

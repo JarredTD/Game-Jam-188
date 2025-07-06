@@ -220,6 +220,7 @@ MonoBehaviour:
   speed: 1
   moveInput: 0
   isRotated90Or270: 0
+  rotatedInAir: 0
   movementController: {fileID: 1105086786}
   player: {fileID: 1105086784}
 --- !u!4 &287264765
@@ -646,6 +647,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3249559607754004217, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
+      propertyPath: boxRotate
+      value: 
+      objectReference: {fileID: 287264764}
     - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_ActionId
       value: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
