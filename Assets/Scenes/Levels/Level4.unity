@@ -780,58 +780,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 892623085}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 892623085}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetWalls
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateAnimator
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MovementController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MovementController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8368958752165300749, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

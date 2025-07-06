@@ -14,6 +14,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] float sprintSpeedMultiplier = 1f;
     [SerializeField] float inertiaMultiplier = 1f;
     [SerializeField] bool moving;
+    [SerializeField] bool btnpressed;
     [SerializeField] public bool grounded;
     [SerializeField] float moveInput;
     [SerializeField] Vector2 lastMoveInput;
@@ -42,15 +43,15 @@ public class MovementController : MonoBehaviour
 
         GetWalls(lastMoveInput);
     }
-
+    /*
     public void OnMove(InputAction.CallbackContext context)
     {
-        lastMoveInput = context.ReadValue<Vector2>();
+        lastMoveInput = context.ReadValue<Vector3>();
         moveInput = lastMoveInput.x;
         moving = context.performed;
         UpdateAnimator();
     }
-
+    
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.performed && grounded)
@@ -60,7 +61,7 @@ public class MovementController : MonoBehaviour
             UpdateAnimator();
         }  
     }
-        
+    */   
     #endregion
 
     #region Modifying Movement Methods
@@ -113,7 +114,7 @@ public class MovementController : MonoBehaviour
     }
     
 
-    public void GetWalls(Vector2 moveInput)
+    public void GetWalls(Vector3 moveInput)
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f) && moveInput.x >= 1)
@@ -132,6 +133,33 @@ public class MovementController : MonoBehaviour
         animator.SetBool("isGrounded", grounded);
         animator.SetBool("touchRight", touchRight);
         animator.SetBool("touchLeft", touchLeft);
+    }
+    // Replace the OnMove method with the following Update method and supporting logic
+
+    private void Update()
+    {
+        float horizontal = 0f;
+        if (Input.GetKey(KeyCode.A))
+        {
+            horizontal = -1f;
+            btnpressed = true;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            horizontal = 1f;
+            btnpressed = true;
+        }
+        else btnpressed = false;
+        lastMoveInput = new Vector3(horizontal, 0f, 0f);
+        moveInput = horizontal;
+        moving = Mathf.Abs(horizontal) > 0.01f;
+        UpdateAnimator();
+        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            moveInput = lastMoveInput.x;
+            UpdateAnimator();
+        }
     }
     #endregion
 }

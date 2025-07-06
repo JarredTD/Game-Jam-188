@@ -226,10 +226,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
-    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
@@ -296,6 +292,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cb8af555-6d86-4e1d-8c69-f4ba1dae28db
+    m_ActionName: 'Player/Slide[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -592,58 +592,6 @@ PrefabInstance:
     - target: {fileID: 114268268238989909, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 892623085}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 892623085}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: GetWalls
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateAnimator
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: MovementController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: MovementController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590098900869913064, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8368958752165300749, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
