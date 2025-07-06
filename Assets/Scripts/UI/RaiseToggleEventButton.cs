@@ -11,8 +11,6 @@ public class RaiseToggleEventButton : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            Debug.Log($"[{debugLabel}] Button clicked. Raising toggle event.");
-
             if (toggleEvent != null)
             {
                 toggleEvent.Raise();

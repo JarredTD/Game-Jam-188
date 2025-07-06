@@ -21,7 +21,6 @@ public class ToggleUIListener : MonoBehaviour
     private void HandleToggle()
     {
         GameObject go = targetWindow != null ? targetWindow : gameObject;
-        Debug.Log($"{go.name} received toggle event. hideOnEvent = {hideOnEvent}. Setting active = {!hideOnEvent}");
         go.SetActive(!hideOnEvent);
     }
 }

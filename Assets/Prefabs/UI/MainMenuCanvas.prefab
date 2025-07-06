@@ -261,8 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76377572d842de4285dd1c82beda1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
-  exposedParameter: MasterVolume
+  slider: {fileID: 339005763931572153}
 --- !u!1 &1463793567130303894
 GameObject:
   m_ObjectHideFlags: 0

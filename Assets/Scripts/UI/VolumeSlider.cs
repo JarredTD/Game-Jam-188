@@ -1,34 +1,35 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
 public class VolumeSlider : MonoBehaviour
 {
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private string exposedParameter = "MasterVolume";
-
-    private Slider slider;
+    [SerializeField] private Slider slider;
 
     private void Awake()
     {
-        slider = GetComponent<Slider>();
-        slider.onValueChanged.AddListener(HandleSliderValueChanged);
+        if (slider == null) slider = GetComponent<Slider>();
+
+        slider.minValue = 0.0001f;
+        slider.maxValue = 1f;
+
+        InitializeSlider();
     }
 
-    private void Start()
+    private void InitializeSlider()
     {
-        if (audioMixer.GetFloat(exposedParameter, out float currentValue))
-        {
-            slider.value = Mathf.InverseLerp(-80f, 0f, currentValue);
-        }
+        slider.value = AudioManager.Instance.GetMasterVolume();
+        slider.onValueChanged.AddListener(OnSliderChanged);
     }
 
-    private void HandleSliderValueChanged(float value)
+    private void OnSliderChanged(float value)
     {
-        float dbValue = Mathf.Lerp(-80f, 0f, value);
-        audioMixer.SetFloat(exposedParameter, dbValue);
+        AudioManager.Instance.SetMasterVolume(value);
+    }
 
-        PlayerPrefs.SetFloat("volume", value);
+    private void OnDestroy()
+    {
+        if (slider != null)
+            slider.onValueChanged.RemoveListener(OnSliderChanged);
     }
 }
