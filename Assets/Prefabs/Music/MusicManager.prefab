@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 8300000, guid: 3afc88f6b620142478fd57dbb47cccbf, type: 3}
   musicOutputGroup: {fileID: 24300002, guid: 15e6cc8034cd1ab4ebda39ccc42dd045, type: 2}
-  musicFadeInDuration: 1
+  musicFadeInDuration: 1.5
   masterMixer: {fileID: 24100000, guid: 15e6cc8034cd1ab4ebda39ccc42dd045, type: 2}
   volumeParameter: MasterVolume
