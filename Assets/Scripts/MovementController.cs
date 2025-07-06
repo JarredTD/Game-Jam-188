@@ -18,6 +18,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] public bool grounded;
     [SerializeField] float moveInput;
     [SerializeField] Vector2 lastMoveInput;
+    public BoxRotate boxRotate; 
     bool sprintPressed;
 
     // Whether the player is touching either wall
@@ -34,7 +35,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateAnimator();
-        GetGrounded();
+        if(!boxRotate.rotating){ GetGrounded(); }
         SpeedSmoothing();
         //if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
