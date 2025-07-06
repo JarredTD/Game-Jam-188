@@ -107,13 +107,13 @@ public class MovementController : MonoBehaviour
         Vector3 playerRight = transform.position + new Vector3(0.40f, 0, 0);
         
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f) ||
-        Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f) ||
+        if (/*Physics.Raycast(transform.position, Vector3.down, out hit, .6f) ||
+        Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f) ||*/
         Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f))
         {
-            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
-            Debug.DrawRay(playerLeft, Vector3.down * hit.distance, Color.red);
-            Debug.DrawRay(playerRight, Vector3.down * hit.distance, Color.red);
+            // Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
+            // Debug.DrawRay(playerLeft, Vector3.down * hitLeft.distance, Color.red);
+            Debug.DrawRay(playerRight, Vector3.down * hitRight.distance, Color.red);
             grounded = true;
         }
         else
