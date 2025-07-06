@@ -127,9 +127,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142950140}
     m_Modifications:
+    - target: {fileID: 150361979965562045, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 237970617044551104, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
       propertyPath: m_Name
       value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 237970617044551104, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3350238562736439496, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -170,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 3350238562736439496, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391873662873392800, guid: 21308b14c09e4004ca9b168dc2a690ce, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -447,7 +459,7 @@ GameObject:
   - component: {fileID: 526500879}
   - component: {fileID: 526500878}
   - component: {fileID: 526500877}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 624511572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,9 +725,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4040163150534606445, guid: 64301963c0df71a4389ce030ae227937, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5214202704225634653, guid: 64301963c0df71a4389ce030ae227937, type: 3}
       propertyPath: m_Name
       value: BeamSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 5214202704225634653, guid: 64301963c0df71a4389ce030ae227937, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670550647920456816, guid: 64301963c0df71a4389ce030ae227937, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -903,6 +927,10 @@ PrefabInstance:
     - target: {fileID: 4683006361116500102, guid: 575ab2f7f0358df4cae468a0e03fc378, type: 3}
       propertyPath: m_Name
       value: Beam
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683006361116500102, guid: 575ab2f7f0358df4cae468a0e03fc378, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

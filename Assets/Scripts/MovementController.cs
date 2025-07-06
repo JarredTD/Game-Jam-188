@@ -18,7 +18,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] public bool grounded;
     [SerializeField] float moveInput;
     [SerializeField] Vector2 lastMoveInput;
-    public BoxRotate boxRotate; 
+    [SerializeField] LayerMask mask;
+    public BoxRotate boxRotate;
     bool sprintPressed;
 
     // Whether the player is touching either wall
@@ -35,7 +36,8 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateAnimator();
-        if(!boxRotate.rotating){ GetGrounded(); }
+        if (!boxRotate.rotating) { GetGrounded(); }
+        //GetGrounded();
         SpeedSmoothing();
         //if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
@@ -62,7 +64,7 @@ public class MovementController : MonoBehaviour
             UpdateAnimator();
         }  
     }
-    */   
+    */
     #endregion
 
     #region Modifying Movement Methods
@@ -106,11 +108,11 @@ public class MovementController : MonoBehaviour
 
         Vector3 playerLeft = transform.position - new Vector3(0.40f, 0, 0);
         Vector3 playerRight = transform.position + new Vector3(0.40f, 0, 0);
-        
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f) ||
-        Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f) ||
-        Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f))
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f, mask) ||
+        Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f, mask) ||
+        Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f, mask))
         {
             //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
             //Debug.DrawRay(playerLeft, Vector3.down * hitLeft.distance, Color.red);
@@ -122,18 +124,20 @@ public class MovementController : MonoBehaviour
             Debug.DrawRay(transform.position, Vector3.down * 1000, Color.white);
             grounded = false;
         }
+
+        if (boxRotate.rotating) { grounded = false; }
     }
-    
+
 
     public void GetWalls(Vector3 moveInput)
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.right, out hit, .6f) && moveInput.x >= 1)
-        { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red);}
+        { touchRight = true; Debug.DrawRay(transform.position, Vector3.right * hit.distance, Color.red); }
         else { touchRight = false; }
 
         if (Physics.Raycast(transform.position, Vector3.left, out hit, .6f) && moveInput.x <= -1)
-        { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red);}
+        { touchLeft = true; Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red); }
         else { touchLeft = false; }
 
         UpdateAnimator();
@@ -172,5 +176,17 @@ public class MovementController : MonoBehaviour
         }
     }
     #endregion
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Gem")
+        {
+            boxRotate.rotatedInAir = false;
+            Debug.Log("gem hit");
+            Destroy(collision.gameObject);
+        }
+
+        
+    }
 }
 

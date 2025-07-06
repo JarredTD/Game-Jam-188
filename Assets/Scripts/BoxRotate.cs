@@ -10,7 +10,7 @@ public class BoxRotate : MonoBehaviour
     [SerializeField] private float speed = 1;
     [SerializeField] private float moveInput;
     [SerializeField] public bool isRotated90Or270;
-    [SerializeField] private bool rotatedInAir;
+    [SerializeField] public bool rotatedInAir;
     public MovementController movementController;
     private float rotateTarget = 0;
 
@@ -19,8 +19,6 @@ public class BoxRotate : MonoBehaviour
     {
 
     }
-
-
 
     void Update()
     {
@@ -46,7 +44,7 @@ public class BoxRotate : MonoBehaviour
         // Check if the box is rotated 90 or 270 degrees (modulo 360)
         float z = Mathf.Round(transform.eulerAngles.z) % 360;
         isRotated90Or270 = (Mathf.Approximately(z, 90f) || Mathf.Approximately(z, 270f));
-        if (movementController.grounded)
+        if(movementController.grounded && !rotating)
         {
             rotatedInAir = false;
         }
@@ -64,6 +62,7 @@ public class BoxRotate : MonoBehaviour
                 speed = -moveInput * rotateSpeed;
                 rotateTarget = 90;
                 rotatedInAir = true;
+                movementController.grounded = false;
             }
         }
     }

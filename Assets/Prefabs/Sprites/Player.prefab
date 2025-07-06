@@ -163,6 +163,9 @@ MonoBehaviour:
   grounded: 0
   moveInput: 0
   lastMoveInput: {x: 0, y: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
   boxRotate: {fileID: 0}
   touchLeft: 0
   touchRight: 0
