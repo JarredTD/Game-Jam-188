@@ -155,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   speedMultiplier: 1
-  jumpForce: 10
+  jumpForce: 8
   sprintSpeedMultiplier: 1
-  inertiaMultiplier: 1
+  inertiaMultiplier: 1.5
   moving: 0
   btnpressed: 0
   grounded: 0

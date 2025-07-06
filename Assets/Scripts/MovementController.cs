@@ -12,7 +12,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] public float speedMultiplier = 1f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float sprintSpeedMultiplier = 1f;
-    [SerializeField] float inertiaMultiplier = 1f;
+    [SerializeField] float inertiaMultiplier = 1.5f;
     [SerializeField] bool moving;
     [SerializeField] bool btnpressed;
     [SerializeField] public bool grounded;
@@ -36,7 +36,7 @@ public class MovementController : MonoBehaviour
         UpdateAnimator();
         GetGrounded();
         SpeedSmoothing();
-        if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
+        //if (speedMultiplier < 2) speedMultiplier *= sprintSpeedMultiplier;
         float targetVelocity = moveInput * speed * speedMultiplier;
         Vector3 velocity = rb.linearVelocity;
         rb.linearVelocity = new Vector3(targetVelocity, velocity.y, velocity.z);
@@ -101,7 +101,7 @@ public class MovementController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f) || Physics.Raycast(transform.position - new Vector3(0.40f, 0, 0), Vector3.down, out hit, .6f) || Physics.Raycast(transform.position + new Vector3(0.40f, 0, 0), Vector3.down, out hit, .6f))
         {
             Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
             grounded = true;
@@ -134,7 +134,6 @@ public class MovementController : MonoBehaviour
         animator.SetBool("touchRight", touchRight);
         animator.SetBool("touchLeft", touchLeft);
     }
-    // Replace the OnMove method with the following Update method and supporting logic
 
     private void Update()
     {
