@@ -1,22 +1,22 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SceneTransitionController : MonoBehaviour
 {
-    [Header("Fade Settings")]
-    [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 0.3f;
-    [SerializeField] private float fullBlackDuration = 0.1f;
+    [Header("Transition Object")]
+    [SerializeField] private RectTransform transitionPanel;
+    [SerializeField] private float slideDuration = 0.5f;
+    [SerializeField] private float fullCoverDuration = 0.1f;
 
     [Header("Scene Event")]
     [SerializeField] private SceneLoadEventSO sceneLoadEvent;
 
-    [Header("Optional Blocking Control")]
-    [SerializeField] private CanvasGroup canvasGroup;
-
     private static SceneTransitionController _instance;
+
+    private Vector2 aboveScreen;
+    private Vector2 centerScreen = Vector2.zero;
+    private Vector2 belowScreen;
 
     private void Awake()
     {
@@ -28,39 +28,45 @@ public class SceneTransitionController : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
-
-        InitializeFader();
+        InitializePositions();
     }
-    private void InitializeFader()
+
+    private void InitializePositions()
     {
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = 0f;
-            canvasGroup.blocksRaycasts = false;
-            canvasGroup.interactable = false;
-        }
+        float height = Screen.height;
+        aboveScreen = new Vector2(0, height);
+        belowScreen = new Vector2(0, -height);
 
-        if (fadeImage != null)
-        {
-            fadeImage.gameObject.SetActive(true);
-            Color color = fadeImage.color;
-            color.a = 0f;
-            fadeImage.color = color;
-        }
+        if (transitionPanel == null)
+            return;
+
+        transitionPanel.anchoredPosition = aboveScreen;
     }
 
-    private void OnEnable() => sceneLoadEvent.OnRequestSceneLoad += HandleSceneLoad;
-    private void OnDisable() => sceneLoadEvent.OnRequestSceneLoad -= HandleSceneLoad;
+    private void OnEnable()
+    {
+        if (sceneLoadEvent != null)
+            sceneLoadEvent.OnRequestSceneLoad += HandleSceneLoad;
+    }
+
+    private void OnDisable()
+    {
+        if (sceneLoadEvent != null)
+            sceneLoadEvent.OnRequestSceneLoad -= HandleSceneLoad;
+    }
 
     private void HandleSceneLoad(SceneLoaderSO loader)
     {
         if (!string.IsNullOrEmpty(loader.sceneName))
-            StartCoroutine(FadeAndLoad(loader.sceneName));
+            StartCoroutine(PerformSceneTransition(loader.sceneName));
     }
 
-    private IEnumerator FadeAndLoad(string sceneName)
+    private IEnumerator PerformSceneTransition(string sceneName)
     {
-        yield return Fade(0f, 1f);
+        Time.timeScale = 0f;
+
+        yield return SlidePanel(aboveScreen, centerScreen);
+        yield return new WaitForSecondsRealtime(fullCoverDuration);
 
         AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName);
         loadOp.allowSceneActivation = false;
@@ -70,58 +76,32 @@ public class SceneTransitionController : MonoBehaviour
 
         loadOp.allowSceneActivation = true;
 
-        yield return null;
-        yield return null;
+        while (!loadOp.isDone)
+            yield return null;
 
-        yield return new WaitForSecondsRealtime(fullBlackDuration);
+        Canvas.ForceUpdateCanvases();
 
-        yield return Fade(1f, 0f);
+        for (int i = 0; i < 3; i++)
+            yield return new WaitForEndOfFrame();
+
+        yield return SlidePanel(centerScreen, belowScreen);
+
+        transitionPanel.anchoredPosition = aboveScreen;
+
+        Time.timeScale = 1f;
     }
 
-    private IEnumerator Fade(float start, float end)
+    private IEnumerator SlidePanel(Vector2 start, Vector2 end)
     {
-        if (end < start)
+        float elapsed = 0f;
+
+        while (elapsed < slideDuration)
         {
-            Time.timeScale = 1f;
-            yield return null;
-        }
-        else
-        {
-            Time.timeScale = 0f;
-        }
-
-        float time = 0f;
-        Color color = fadeImage.color;
-
-        if (canvasGroup != null && end > start)
-        {
-            canvasGroup.blocksRaycasts = true;
-            canvasGroup.interactable = false;
-        }
-
-        while (time < fadeDuration)
-        {
-            time += Time.unscaledDeltaTime;
-            color.a = Mathf.Lerp(start, end, time / fadeDuration);
-            fadeImage.color = color;
-
-            if (canvasGroup != null)
-                canvasGroup.alpha = color.a;
-
+            elapsed += Time.unscaledDeltaTime;
+            transitionPanel.anchoredPosition = Vector2.Lerp(start, end, elapsed / slideDuration);
             yield return null;
         }
 
-        color.a = end;
-        fadeImage.color = color;
-
-        if (canvasGroup != null)
-        {
-            canvasGroup.alpha = end;
-            canvasGroup.blocksRaycasts = end > 0f;
-            canvasGroup.interactable = false;
-        }
-
-        if (start > end)
-            Time.timeScale = 1f;
+        transitionPanel.anchoredPosition = end;
     }
 }
