@@ -503,6 +503,7 @@ MonoBehaviour:
   rotatedInAir: 0
   movementController: {fileID: 892623085}
   player: {fileID: 892623083}
+  playerSprite: {fileID: 0}
 --- !u!4 &142950140
 Transform:
   m_ObjectHideFlags: 0
@@ -2018,7 +2019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8664627275102072885, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 3.032
       objectReference: {fileID: 0}
     - target: {fileID: 8664627275102072885, guid: f0ea20b96983c2c4083256fd13770047, type: 3}
       propertyPath: m_LocalPosition.z
