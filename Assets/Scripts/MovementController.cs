@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] float moveInput;
     [SerializeField] Vector2 lastMoveInput;
     [SerializeField] LayerMask mask;
-    [SerializeField] private bool wasGrounded;   
+    [SerializeField] private bool wasGrounded = true;   
     public BoxRotate boxRotate;
     bool sprintPressed;
 
