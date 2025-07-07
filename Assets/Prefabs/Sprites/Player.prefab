@@ -168,7 +168,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  wasGrounded: 0
+  wasGrounded: 1
+  isGrounded: 0
   boxRotate: {fileID: 0}
   touchLeft: 0
   touchRight: 0
@@ -321,10 +322,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 15e6cc8034cd1ab4ebda39ccc42dd045, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 62b42414f5148f440b1451a16fc14494, type: 3}
-  m_Resource: {fileID: 8300000, guid: 62b42414f5148f440b1451a16fc14494, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 56657de046c197c4f9d22510d83d12ac, type: 3}
+  m_Resource: {fileID: 8300000, guid: 56657de046c197c4f9d22510d83d12ac, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.11
   m_Pitch: 1
   Loop: 0
   Mute: 0
