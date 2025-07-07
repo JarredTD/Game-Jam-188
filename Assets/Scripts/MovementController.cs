@@ -114,31 +114,13 @@ public class MovementController : MonoBehaviour
         Vector3 playerRight = transform.position + new Vector3(0.40f, 0, 0);
 
 
-<<<<<<< Updated upstream
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f, mask) ||
-        Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f, mask) ||
-        Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f, mask) && !grounded)
-        {
-            //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
-            //Debug.DrawRay(playerLeft, Vector3.down * hitLeft.distance, Color.red);
-            //Debug.DrawRay(playerRight, Vector3.down * hitRight.distance, Color.red);
-            grounded = true;
-            
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, Vector3.down * 1000, Color.white);
-            grounded = false;
-            effectsSource.Play();
-        }
-=======
         grounded = Physics.Raycast(transform.position, Vector3.down, out hit, .6f, mask) ||
                    Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f, mask) ||
                    Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f, mask);
         //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
         //Debug.DrawRay(playerLeft, Vector3.down * hitLeft.distance, Color.red);
         //Debug.DrawRay(playerRight, Vector3.down * hitRight.distance, Color.red);
->>>>>>> Stashed changes
+
 
         if (boxRotate.rotating) { grounded = false; }
         if (!wasGrounded && grounded)
@@ -151,7 +133,7 @@ public class MovementController : MonoBehaviour
 
     private void OnLand()
     {
-        //place your code here logan
+        effectsSource.Play();
     }
     public void GetWalls(Vector3 moveInput)
     {
