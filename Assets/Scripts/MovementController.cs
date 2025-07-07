@@ -26,10 +26,13 @@ public class MovementController : MonoBehaviour
     [SerializeField] bool touchLeft;
     [SerializeField] bool touchRight;
 
+    [SerializeField] AudioSource effectsSource;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        effectsSource = GetComponent<AudioSource>();
     }
 
     #region Core Movement Methods
@@ -112,17 +115,19 @@ public class MovementController : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit, .6f, mask) ||
         Physics.Raycast(playerLeft, Vector3.down, out hitLeft, .6f, mask) ||
-        Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f, mask))
+        Physics.Raycast(playerRight, Vector3.down, out hitRight, .6f, mask) && !grounded)
         {
             //Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.red);
             //Debug.DrawRay(playerLeft, Vector3.down * hitLeft.distance, Color.red);
             //Debug.DrawRay(playerRight, Vector3.down * hitRight.distance, Color.red);
             grounded = true;
+            
         }
         else
         {
             Debug.DrawRay(transform.position, Vector3.down * 1000, Color.white);
             grounded = false;
+            effectsSource.Play();
         }
 
         if (boxRotate.rotating) { grounded = false; }
