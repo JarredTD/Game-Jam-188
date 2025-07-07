@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5986701613061694596}
   - component: {fileID: 1543028141054808652}
   - component: {fileID: 4117879165913697836}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
