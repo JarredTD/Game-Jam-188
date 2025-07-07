@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 984014765049723737}
   - component: {fileID: 1424731067561818154}
   - component: {fileID: 5992447739442039637}
+  - component: {fileID: -3377630793782938980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -167,9 +168,11 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
+  wasGrounded: 0
   boxRotate: {fileID: 0}
   touchLeft: 0
   touchRight: 0
+  effectsSource: {fileID: 0}
 --- !u!114 &3590098900869913064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +408,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3377630793782938980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114268268238989909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191b37380a0ac5a41a2b62725ce10149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneLoadEvent: {fileID: 11400000, guid: 002d400cc1058fa4d92371a65683841f, type: 2}
+  loaderAsset: {fileID: 11400000, guid: f41f999322cf8c5439cafc64c3dc3fdc, type: 2}
+  triggerKey: 114
 --- !u!1 &1830245188251736955
 GameObject:
   m_ObjectHideFlags: 0

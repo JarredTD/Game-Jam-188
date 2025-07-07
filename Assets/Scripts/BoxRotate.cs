@@ -15,9 +15,15 @@ public class BoxRotate : MonoBehaviour
     private float rotateTarget = 0;
 
     [SerializeField] private GameObject player;
+    [SerializeField] public SpriteRenderer playerSprite;
     void OnAwake()
     {
+        
+    }
 
+    private void Start()
+    {
+        playerSprite = player.GetComponentInChildren<SpriteRenderer>();
     }
 
     void Update()
@@ -47,6 +53,7 @@ public class BoxRotate : MonoBehaviour
         if(movementController.grounded && !rotating)
         {
             rotatedInAir = false;
+            playerSprite.color = Color.white;
         }
         
     }
@@ -62,6 +69,8 @@ public class BoxRotate : MonoBehaviour
                 speed = -moveInput * rotateSpeed;
                 rotateTarget = 90;
                 rotatedInAir = true;
+                playerSprite.color = new Color(0.3f, 0.5f, 0.7f);
+
                 movementController.grounded = false;
             }
         }

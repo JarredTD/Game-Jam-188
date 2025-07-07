@@ -192,6 +192,8 @@ public class MovementController : MonoBehaviour
         if (collision.gameObject.tag == "Gem")
         {
             boxRotate.rotatedInAir = false;
+            boxRotate.playerSprite.color = Color.white;
+            //boxRotate.playerSprite.color = new Color(0.3f, 0.5f, 0.7f);
             Debug.Log("gem hit");
             Destroy(collision.gameObject);
         }
